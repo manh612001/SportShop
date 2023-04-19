@@ -1,0 +1,63 @@
+﻿@model SportShop.ViewModels.Product.ProductViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<!-- Content Wrapper START -->
+<div class="main-content">
+    <div class="page-header">
+        <h2 class="header-title">Danh sách danh mục</h2>
+        <div class="header-sub-title">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                <a asp-area="Admin" asp-controller="Products" asp-action="Index" class="breadcrumb-item">Danh sách sản phẩm</a>
+                <span class="breadcrumb-item active">Xóa sản phẩm</span>
+            </nav>
+        </div>
+    </div>
+
+
+
+    <h1>Delete</h1>
+
+    <h3>Bạn có chắc chắn muốn xóa sản phẩm này?</h3>
+    <div>
+        <h4>Sản phẩm</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Tên sản phẩm
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                Mô tả
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                Giá
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                Đơn vị tính
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DVT)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <a asp-action="Index">Trở lại danh sách</a>
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,203 @@
+﻿@{
+    var t = ViewBag.SelectList;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SportShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SportShop.styles.css" asp-append-version="true" />
+
+    @*import lib*@
+    <link rel="stylesheet" href="~/CustomerAssets/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/vendors/linericon/style.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/css/themify-icons.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/css/flaticon.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/vendors/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/vendors/lightbox/simpleLightbox.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/vendors/nice-select/css/nice-select.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/vendors/animate-css/animate.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/vendors/jquery-ui/jquery-ui.css" />
+    <!-- main css -->
+    <link rel="stylesheet" href="~/CustomerAssets/css/style.css" />
+    <link rel="stylesheet" href="~/CustomerAssets/css/responsive.css" />
+</head>
+<body>
+    <header class="header_area">
+        <div class="top_menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="float-left">
+                            <p>Số điện thoại: +01 256 25 235</p>
+                            <p>Email: info@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="float-right">
+                            <ul class="right_side">
+                                <li>
+                                    <a href="cart.html">
+                                        giỏ hàng
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tracking.html">
+                                        Kiểm tra đơn hàng
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        Liên hệ với chúng tôi
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main_menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light w-100">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html">
+                        <img src="~/CustomerAssets/img/wml-sodex-sport.png" width="160px" height="60px" alt="" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
+                        <div class="row w-100 mr-0">
+                            <div class="col-lg-7 pr-0">
+                                <ul class="nav navbar-nav center_nav pull-right">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="index.html">Trang chủ</a>
+                                    </li>
+                                    <li class="nav-item submenu dropdown">
+                                        <a href="#"  class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                           aria-expanded="false">Danh mục</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a class="nav-link">Thể thao đồng đội</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link">Thể thao dùng vợt</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link">Thể thao cá nhân</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link">Thể thao dưới nước</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-5 pr-0">
+                                <ul class="nav navbar-nav navbar-right right_nav pull-right">
+                                    <li class="nav-item">
+                                        <a href="#" class="icons">
+                                            <i class="ti-search" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="#" class="icons">
+                                            <i class="ti-shopping-cart"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="#" class="icons">
+                                            <i class="ti-user" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="#" class="icons">
+                                            <i class="ti-heart" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer class="footer-area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 single-footer-widget">
+                    <p>
+                        Sodex Sport là một trong những thương hiệu hàng đầu thế giới về sản xuất, kinh doanh trang thiết bị, dụng cụ thể dục thể thao chuyên nghiệp, an toàn, chất lượng theo các quy đinh, tiêu chuẩn của Châu Âu.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 single-footer-widget">
+                    <h4>Liên hệ với chúng tôi</h4>
+                    <ul>
+                        <li>
+
+                            Địa chỉ: Lô G9, G10, G11 - Khu Công Nghiệp Suối Dầu,
+                            Xã Suối Tân, Huyện Cam Lâm, Tỉnh Khánh Hòa, Việt Nam
+
+                        </li>
+                        <li>Điện thoại: 0258 3900111 /112/113/114 </li>
+                        <li>Fax: 0258 3900115</></li>
+                        <li>TEmail: contact@sodexsport.com</li>
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 single-footer-widget">
+                    <h4>Gửi thông điệp của bạn</h4>
+                    <p>Địa chỉ email</p>
+                    <div class="form-wrap" id="mc_embed_signup">
+                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                              method="get" class="form-inline">
+                            <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Your Email Address '" required="" type="email">
+                            <button class="click-btn btn btn-default">Gửi</button>
+                            <div style="position: absolute; left: -5000px;">
+                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                            </div>
+
+                            <div class="info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

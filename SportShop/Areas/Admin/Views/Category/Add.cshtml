@@ -1,0 +1,60 @@
+﻿@model SportShop.ViewModels.Category.CategoryViewModel
+
+<!-- Content Wrapper START -->
+<div class="main-content">
+    <div class="page-header">
+        <h2 class="header-title">Danh sách danh mục</h2>
+        <div class="header-sub-title">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a href="#" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                <span class="breadcrumb-item">Danh Mục</span>
+                <span class="breadcrumb-item active">Thêm danh mục</span>
+            </nav>
+        </div>
+    </div>
+    <form asp-area="Admin" asp-controller="Category"asp-action="Add" method="post" >
+        <div class="page-header no-gutters has-tab">
+            <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+                <div class="media align-items-center m-b-15">
+                </div>
+                <div class="m-b-15">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="anticon anticon-save"></i>
+                        <span>Lưu</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-content m-t-15">
+            <div class="tab-pane fade show active" id="product-edit-basic">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="Name">Tên danh mục</label>
+                            <input asp-for="Name" class="form-control" placeholder="Tên danh mục">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+<!-- Content Wrapper END -->
+<!-- Footer START -->
+<footer class="footer">
+    <div class="footer-content">
+        <p class="m-b-0">Copyright © 2019 Theme_Nate. All rights reserved.</p>
+        <span>
+            <a href="" class="text-gray m-r-15">Term &amp; Conditions</a>
+            <a href="" class="text-gray">Privacy &amp; Policy</a>
+        </span>
+    </div>
+</footer>
+<!-- Footer END -->

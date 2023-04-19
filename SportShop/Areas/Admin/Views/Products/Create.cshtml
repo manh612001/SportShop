@@ -1,0 +1,71 @@
+﻿@model SportShop.ViewModels.Product.ProductViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- Content Wrapper START -->
+<div class="main-content">
+    <div class="page-header">
+        <h2 class="header-title">Danh sách</h2>
+        <div class="header-sub-title">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a href="#" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                <a asp-area="Admin" asp-controller="Products" asp-action="Index" class="breadcrumb-item">Danh sách sản phẩm</a>
+                <span class="breadcrumb-item active">Thêm sản phẩm</span>
+            </nav>
+        </div>
+    </div>
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Name">Tên</label>
+                <input asp-for="Name" class="form-control" id="inputEmail4">
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="CategoryId">Danh Mục</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.SelectList">
+                    
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Mô tả</label>
+            <textarea asp-for="Description" class="form-control" id="inputPassword4"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageUpload">Ảnh sản phẩm</label>
+            <input asp-for="ImageUpload" class="form-control">
+        </div>
+        
+        
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="Price">Giá</label>
+                <input asp-for="Price" class="form-control" id="inputAddress2">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="DVT">Đơn vị tính</label>
+                <select asp-for="DVT" class="form-control">
+                    <option value="Chiếc">Chiếc</option>
+                    <option value="Đôi">Đôi</option>
+                    <option value="Bộ">Bộ</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Quantity">Số lượng</label>
+                <input asp-for="Quantity" class="form-control" id="Địa chỉ">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    </form>
+    <div>
+        <a asp-action="Index">Quay lại</a>
+    </div>
+</div>
+
+
+
+
+
+
