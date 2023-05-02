@@ -16,6 +16,7 @@ builder.Services.AddDbContext<DatabaseDbContext>(options =>
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IHomeService, HomeService>();
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<DatabaseDbContext>()
     .AddDefaultTokenProviders();

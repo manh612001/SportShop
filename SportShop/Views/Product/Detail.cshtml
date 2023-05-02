@@ -1,0 +1,82 @@
+﻿@model SportShop.ViewModels.Product.DetailProductViewModel
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Chi tiết sản phẩm</h2>
+                </div>
+                <div class="page_link">
+                    <a href="index.html">Trang chủ</a>
+                    <a href="single-product.html">Chi tiết sản phẩm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Single Product Area =================-->
+<div class="mb-5">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-lg-6">
+                <div class="s_product_img">
+                    <div id="carouselExampleIndicators"
+                         class="carousel slide"
+                         data-ride="carousel">
+                        
+                        <img src="~/media/products/@Model.Image" width="600px"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text">
+                    <h3>@Model.Name</h3>
+                    <h2>@Model.Price</h2>
+                    <ul class="list">
+                        <li>
+                            <a class="active" href="#">
+                                <span>Danh mục</span> : @Model.Category.Name
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <p>
+                        @Model.Description
+                    </p>
+                    <div class="product_count">
+                        <label for="qty">Số lượng:</label>
+                        <input type="text"
+                               name="qty"
+                               id="sst"
+                               maxlength="12"
+                               value="1"
+                               title="Quantity:"
+                               class="input-text qty" />
+                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                class="increase items-count"
+                                type="button">
+                            <i class="lnr lnr-chevron-up"></i>
+                        </button>
+                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                class="reduced items-count"
+                                type="button">
+                            <i class="lnr lnr-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="card_area">
+                        <a class="main_btn" href="#">Thêm vào giỏ hàng</a>
+                        <a class="icon_btn" href="#">
+                            <i class="lnr lnr lnr-diamond"></i>
+                        </a>
+                        <a class="icon_btn" href="#">
+                          <i class="lnr lnr lnr-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================End Single Product Area =================-->
+

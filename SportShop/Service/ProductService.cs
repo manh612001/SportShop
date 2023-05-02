@@ -73,23 +73,62 @@ namespace SportShop.Service
                 
         }
 
-        public async Task<ProductViewModel> GetById(int? id)
+        public async Task<DetailProductViewModel> GetById(int? id)
         {
             var item =  await _context.Products
                                 .Include(c => c.Category)
                                 .FirstOrDefaultAsync(x => x.Id == id);
-            
-            return new ProductViewModel()
+            var category = await _context.Category.FindAsync(item.categoryId);
+            return new DetailProductViewModel()
             {
                 Id = item.Id,
                 Name = item.Name,
-                Image= item.Image,
+                Image = item.Image,
                 DVT = item.DVT,
                 Price = item.Price,
-                Quantity = item.Quantity,
-                Description= item.Description,
-                CategoryId= item.Category.Id,
+                Description = item.Description,
+                Category = new ViewModels.Category.CategoryViewModel()
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                },
             };
+        }
+
+        public async Task<List<ProductViewModel>> GetProductsByCategory(int? id)
+        {
+            return await _context.Products
+                .Include(c => c.Category)
+                .Where(p=>p.categoryId == id)
+                .Select(p=> new ProductViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Description = p.Description,
+                    DVT= p.DVT,
+                    Image= p.Image
+                })
+                .ToListAsync();
+            
+        }
+        
+
+        public async Task<List<ProductViewModel>> GetProductsByCaTegory(string? key)
+        {
+            return await _context.Products
+                .Include(c => c.Category)
+                .Where(p => p.Name == key)
+                .Select(p => new ProductViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Description = p.Description,
+                    DVT = p.DVT,
+                    Image = p.Image
+                })
+                .ToListAsync();
         }
 
         public async Task Update(ProductViewModel model)

@@ -1,6 +1,5 @@
-﻿@{
-    var t = ViewBag.SelectList;
-}
+﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,18 +85,12 @@
                                         <a href="#"  class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                            aria-expanded="false">Danh mục</a>
                                         <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link">Thể thao đồng đội</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link">Thể thao dùng vợt</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link">Thể thao cá nhân</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link">Thể thao dưới nước</a>
-                                            </li>
+                                            @foreach(var item in ViewBag.categories)
+                                            {
+                                                <li class="nav-item">
+                                                    <a class="nav-link" asp-controller="Product" asp-route-id="@item.Id" asp-action="ProductsByCategory">@item.Name</a>
+                                                </li>
+                                            }
                                         </ul>
                                     </li>
 

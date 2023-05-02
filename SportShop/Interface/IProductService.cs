@@ -7,7 +7,9 @@ namespace SportShop.Interface
         Task Add(ProductViewModel model);
         Task Delete(int? id);
         Task Update(ProductViewModel model);
-        Task<ProductViewModel> GetById(int? id);
+        Task<DetailProductViewModel> GetById(int? id);
         Task<List<ListProductViewModel>> GetAll();
+        Task<List<ProductViewModel>> GetProductsByCategory(int? id);
+        Task<List<ProductViewModel>> GetProductsByCaTegory(string? key);
     }
 }

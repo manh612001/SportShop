@@ -12,19 +12,20 @@ namespace SportShop.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
-        public HomeController(ILogger<HomeController> logger, IProductService productService,ICategoryService categoryService)
+        private readonly IHomeService _homeService;
+        public HomeController(ILogger<HomeController> logger, IProductService productService,ICategoryService categoryService, IHomeService homeService)
         {
             _logger = logger;
             _productService = productService;
             _categoryService = categoryService;
+            _homeService = homeService;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<CategoryViewModel> students = await _categoryService.GetAll();
+            ViewBag.categories = await  _categoryService.GetAll();
             
-            ViewBag.SelectList = students;
-            return View(await _productService.GetAll());
+            return View(await _homeService.HomePage());
         }
 
         public async Task<IActionResult> ProductDetail(int? id)
