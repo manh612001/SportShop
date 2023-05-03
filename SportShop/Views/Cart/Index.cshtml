@@ -1,0 +1,80 @@
+﻿@model SportShop.ViewModels.Cart.CartViewModel;
+
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Giỏ hàng</h2>
+
+
+                </div>
+                <div class="page_link">
+                    <a href="index.html">Trang chủ</a>
+                    <a href="cart.html">Giỏ hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Cart Area =================-->
+<section class="pb-5">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <form method="post" asp-controller="Cart" asp-action="Buy">
+                    <input type="hidden" value="@ViewBag.UserId"/>
+                    <input type="hidden" value="@Model.CartItems"/>
+                    @if (Model.CartItems.Count > 0)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th></th>
+                                    <th>Số lượng</th>
+                                    <th></th>
+                                    <th>Giá</th>
+                                    <th>Tổng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <tr>
+                                        <td><img src="~/media//products/@item.Image" height="100px;" width="147px;" /></td>
+                                        <td>@item.ProductName</td>
+
+                                        <td>@item.Quantity</td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" asp-action="Add" asp-route-id="@item.ProductId">+</a>
+                                            <a class="btn btn-info btn-sm" asp-action="Decrease" asp-route-id="@item.ProductId">-</a>
+                                            <a class="btn btn-danger btn-sm" asp-action="Remove" asp-route-id="@item.ProductId"><i class="fa-solid fa-trash"></i></a>
+                                        </td>
+                                        <td>@item.Price.ToString("C2")</td>
+
+                                        <td>@Model.CartItems.Where(x => x.ProductId == item.ProductId).Sum(x => x.Quantity * x.Price).ToString("C2")</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td class="text-right" colspan="6"><label asp-for="@Model.GrandTotal">Tổng thanh toán: @Model.GrandTotal.ToString("C2")</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right" colspan="6">
+                                        <a class="btn btn-danger" asp-action="Clear">Xóa giỏ hàng</a>
+                                        <button type="submit" class="main_btn" href="#">Mua</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <h2>Giỏ hàng không có sản phẩm nào!</h2>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

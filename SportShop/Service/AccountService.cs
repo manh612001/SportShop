@@ -20,7 +20,7 @@ namespace SportShop.Service
             _roleManager = roleManager;
             _signInManager = signInManager;
         }
-        public async Task Login(LoginViewModel model)
+        public async Task<string> Login(LoginViewModel model)
         {
             try
             {
@@ -37,10 +37,12 @@ namespace SportShop.Service
                 if (signInResult.Succeeded)
                 {
                     var userRoles = await _userManager.GetRolesAsync(user);
+
                     var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name,user.UserName),
-                };
+                    {
+                        new Claim(ClaimTypes.Name,user.UserName),
+                        
+                    };
                     foreach (var userRole in userRoles)
                     {
                         authClaims.Add(new Claim(ClaimTypes.Role, userRole));
@@ -55,14 +57,13 @@ namespace SportShop.Service
                 {
                     throw new Exception("Đăng nhập thất bại");
                 }
-
             }
             catch (Exception)
             {
 
                 throw new Exception("Đăng nhập thất bại");
             }
-            
+            return model.ReturnUrl ?? "/";
         }
 
         public async Task Logout()
@@ -117,7 +118,7 @@ namespace SportShop.Service
             catch (Exception)
             {
 
-                throw new Exception("Lỗi không tạo được nhân viên!");
+                throw new Exception("Lỗi không tạo được tài khoản!");
             }
 
             
@@ -197,6 +198,31 @@ namespace SportShop.Service
             {
 
                 throw new Exception("Lỗi không xóa được nhân viên");
+            }
+        }
+
+        public async Task<AddUserViewModel> GetByName(string? name)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(name);
+                var obj = new AddUserViewModel()
+                {
+                    Id = user.Id,
+                    FullName = user.FullName,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Dob = user.Dob,
+                    Role = user.Role,
+                    Address = user.Address,
+
+                };
+                return obj;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Không tìm thấy nhân viên!");
             }
         }
     }

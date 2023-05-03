@@ -1,53 +1,35 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SportShop.Interface;
 using SportShop.ViewModels.Account;
 
 namespace SportShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
-    public class AccountController : Controller
+    public class UserController : Controller
     {
-
         private readonly IAccountService _accountService;
-        public AccountController(IAccountService accountService)
+        public UserController(IAccountService accountService)
         {
             _accountService = accountService;
         }
-        [AllowAnonymous]
-        public IActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
-        {
-            await _accountService.Login(model);
-            return RedirectToAction("Index", "Home");
-        }
-        public async Task<IActionResult> LogOut()
-        {
-            await _accountService.Logout();
-            return RedirectToAction("Login");
-        }
+
         public async Task<IActionResult> Index()
         {
             return View(await _accountService.GetAll());
         }
-        
+
         public IActionResult Add()
         {
             return View();
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Add(AddUserViewModel model)
         {
             await _accountService.SignUp(model);
             return RedirectToAction("Index");
         }
-        
+
         public async Task<IActionResult> Detail(string? id)
         {
             return View(await _accountService.GetById(id));

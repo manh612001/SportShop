@@ -15,7 +15,11 @@
     <!-- page css -->
     <!-- Core css -->
     <link href="~/AdminAssets/css/app.min.css" rel="stylesheet">
-
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core Vendors JS -->
+    <script src="~/AdminAssets/js/vendors.min.js"></script>
 </head>
 
 <body>
@@ -25,8 +29,8 @@
             <div class="header">
                 <div class="logo logo-dark">
                     <a href="index.html">
-                        <img src="~/AdminAssets/images/logo/logo.png" alt="Logo" width="148px;" height="70px;">
-                        <img class="logo-fold" src="~/AdminAssets/images/logo/logo.png" alt="Logo" width="80px;" height="70px;">
+                        <img src="~/AdminAssets/images/logo/wml-sodex-sport.png" alt="Logo" width="148px;" height="70px;">
+                        <img class="logo-fold" src="~/AdminAssets/images/logo/sodex-fold.png" alt="Logo" width="80px;" height="70px;">
                     </a>
                 </div>
                 <div class="logo logo-white">
@@ -163,7 +167,7 @@
                                         <i class="anticon font-size-10 anticon-right"></i>
                                     </div>
                                 </a>
-                                <a asp-area="Admin" asp-controller="Account" asp-action="LogOut" class="dropdown-item d-block p-h-15 p-v-10">
+                                <a  asp-controller="Account" asp-action="LogOut" asp-area="" class="dropdown-item d-block p-h-15 p-v-10">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
                                             <i class="anticon opacity-04 font-size-16 anticon-logout"></i>
@@ -251,7 +255,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a asp-area="Admin" asp-controller="Account" asp-action="Index">Danh sách nhân viên</a>
+                                    <a asp-area="Admin" asp-controller="User" asp-action="Index">Danh sách nhân viên</a>
                                 </li>
 
                             </ul>
@@ -435,18 +439,14 @@
                 <!-- Quick View END -->
             </div>
         </div>
-
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core Vendors JS -->
-        <script src="~/AdminAssets/js/vendors.min.js"></script>
+        
 
         <!-- page js -->
         <!-- page js -->
         
         <script src="~/AdminAssets/vendors/chartjs/Chart.min.js"></script>
         <script src="~/AdminAssets/js/pages/dashboard-default.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <!-- Core JS -->
         <script src="~/AdminAssets/js/app.min.js"></script>

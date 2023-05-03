@@ -5,7 +5,13 @@ using SportShop.Models;
 using SportShop.Service;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDistributedMemoryCache();
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.IsEssential = true;
+}); 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DatabaseDbContext>(options =>
@@ -20,12 +26,9 @@ builder.Services.AddTransient<IHomeService, HomeService>();
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<DatabaseDbContext>()
     .AddDefaultTokenProviders();
-builder.Services.ConfigureApplicationCookie(options =>
-    options.LoginPath = "/Admin/Account/Login"
-);
 
 var app = builder.Build();
-
+app.UseSession();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

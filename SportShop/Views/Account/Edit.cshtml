@@ -1,5 +1,6 @@
-﻿@model SportShop.ViewModels.Account.AddUserViewModel
-<!-- Content Wrapper START -->
+﻿﻿
+@model SportShop.ViewModels.Account.AddUserViewModel
+
 <div class="main-content">
     <div class="page-header">
         <h2 class="header-title">Danh sách danh mục</h2>
@@ -11,7 +12,7 @@
             </nav>
         </div>
     </div>
-    <form asp-action="Add" method="post">
+    <form asp-action="Edit" method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label asp-for="FullName">Họ tên</label>
@@ -26,14 +27,7 @@
             <label asp-for="Email">Email</label>
             <input asp-for="Email" class="form-control" id="inputAddress" placeholder="Email">
         </div>
-        <div class="form-group">
-            <label asp-for="Password">Mật khẩu</label>
-            <input asp-for="Password" class="form-control" id="inputAddress2" placeholder="Xác nhận mật khẩu">
-        </div>
-        <div class="form-group">
-            <label asp-for="PasswordConfirm">Xác nhận mật khẩu</label>
-            <input asp-for="PasswordConfirm" class="form-control" id="inputAddress2" placeholder="Xác nhận mật khẩu">
-        </div>
+        
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label asp-for="Address">Địa chỉ</label>
@@ -45,17 +39,16 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="inputState">Chức vụ</label>
-                <select id="inputState" asp-for="Role"class="form-control">
+                <select id="inputState" asp-for="Role" class="form-control">
                     <option selected>Chọn...</option>
                     <option value="Admin">Quản trị</option>
                     <option value="User">Người dùng</option>
                 </select>
             </div>
-            
+
         </div>
         <button type="submit" class="btn btn-primary">Lưu</button>
     </form>
 </div>
 <!-- Content Wrapper END -->
-
 <!-- Footer END -->

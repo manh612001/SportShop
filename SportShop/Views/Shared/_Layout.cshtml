@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SportShop.styles.css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @*import lib*@
     <link rel="stylesheet" href="~/CustomerAssets/css/bootstrap.css" />
     <link rel="stylesheet" href="~/CustomerAssets/vendors/linericon/style.css" />
@@ -64,7 +64,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html">
+                    <a class="navbar-brand logo_h" asp-action="Index">
                         <img src="~/CustomerAssets/img/wml-sodex-sport.png" width="160px" height="60px" alt="" />
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -79,7 +79,7 @@
                             <div class="col-lg-7 pr-0">
                                 <ul class="nav navbar-nav center_nav pull-right">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Trang chủ</a>
+                                        <a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a>
                                     </li>
                                     <li class="nav-item submenu dropdown">
                                         <a href="#"  class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -88,14 +88,14 @@
                                             @foreach(var item in ViewBag.categories)
                                             {
                                                 <li class="nav-item">
-                                                    <a class="nav-link" asp-controller="Product" asp-route-id="@item.Id" asp-action="ProductsByCategory">@item.Name</a>
+                                                    <a class="nav-link itemCategory" asp-controller="Product" asp-route-id="@item.Id" asp-action="ProductsByCategory">@item.Name</a>
                                                 </li>
                                             }
                                         </ul>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                                        <a class="nav-link" asp-controller="Home" asp-action="Contact">Liên hệ</a>
                                     </li>
                                 </ul>
                             </div>
@@ -109,20 +109,21 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="#" class="icons">
+                                        <a asp-controller="Cart" asp-action="Index" class="icons">
                                             <i class="ti-shopping-cart"></i>
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="#" class="icons">
-                                            <i class="ti-user" aria-hidden="true"></i>
+                                        <a  class="icons">
+                                            <i class="ti-user" aria-hidden="true"> @User.Identity.Name</i>
                                         </a>
+                                        
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="#" class="icons">
-                                            <i class="ti-heart" aria-hidden="true"></i>
+                                        <a asp-controller="Account" asp-action="LogOut" asp-area="" class="icons">
+                                            Logout
                                         </a>
                                     </li>
                                 </ul>

@@ -28,5 +28,6 @@ namespace SportShop.Controllers
             ViewBag.categories = await _categoryService.GetAll();
             return View(await _productService.GetProductsByCategory(id));
         }
+        
     }
 }

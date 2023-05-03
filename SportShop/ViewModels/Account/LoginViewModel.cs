@@ -8,5 +8,6 @@ namespace SportShop.ViewModels.Account
         public string? UserName { get; set; }
         [MinLength(6)]
         public string? Password { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }

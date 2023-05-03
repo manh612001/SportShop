@@ -18,10 +18,12 @@ namespace SportShop.ViewModels.Product
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
+        
         [Required]
         public string? DVT { get; set; }
         public string? Image { get; set; }
         [Required]
         public CategoryViewModel? Category { get; set; }
+        
     }
 }

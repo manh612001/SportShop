@@ -72,7 +72,23 @@ namespace SportShop.Service
                                 }).ToListAsync();
                 
         }
-
+        public async Task<ProductViewModel> Edit(int? id)
+        {
+            return await _context.Products.
+                Select(p=> new ProductViewModel 
+                { 
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    Price = p.Price,
+                    Image = p.Image,
+                    Quantity = p.Quantity,
+                    ImageUpload = p.ImageUpload,
+                    DVT = p.DVT
+                
+                })
+                .FirstOrDefaultAsync(x=>x.Id == id);
+        }
         public async Task<DetailProductViewModel> GetById(int? id)
         {
             var item =  await _context.Products

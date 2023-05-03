@@ -4,5 +4,7 @@
 // Write your JavaScript code.
 
 $(document).ready(function () {
+    $('.alert').fadeOut(3000);
     $('#data-table').DataTable();
+    
 });

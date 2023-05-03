@@ -1,4 +1,6 @@
-﻿@model SportShop.ViewModels.Account.AddUserViewModel
+﻿﻿
+@model SportShop.ViewModels.Account.AddUserViewModel
+
 <div class="main-content">
     <div class="page-header">
         <h2 class="header-title">Danh sách danh mục</h2>
@@ -69,7 +71,10 @@
             }
 
         </dl>
-
+        <form method="post" asp-action="DeleteCF">
+            <input type="hidden" asp-for="@Model.Id" />
+            <button class="btn btn-danger">Xóa</button>
+        </form>
 
     </div>
 

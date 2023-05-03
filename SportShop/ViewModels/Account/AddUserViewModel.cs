@@ -20,7 +20,7 @@ namespace SportShop.ViewModels.Account
         public string PasswordConfirm { get; set; }
         [Required]
         public string? Address { get; set; }
-        [Required]
+        
         public DateTime? Dob { get; set; }
         [Required]
         public string? Role { get; set; }

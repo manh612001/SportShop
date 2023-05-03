@@ -32,26 +32,6 @@ namespace SportShop.Areas.Admin.Controllers
 
             return View(await _productServive.GetAll());
         }
-
-        // GET: Admin/Products/Details/5
-        // public async Task<IActionResult> Details(int? id)
-        // {
-        //     if (id == null || _context.Products == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var product = await _context.Products
-        //         .Include(p => p.Category)
-        //         .FirstOrDefaultAsync(m => m.Id == id);
-        //     if (product == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(product);
-        // }
-
         //GET: Admin/Products/Create
         public async Task<IActionResult> CreateAsync()
         {
@@ -81,7 +61,10 @@ namespace SportShop.Areas.Admin.Controllers
         //GET: Admin/Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            return View(await _productServive.GetById(id));
+            List<CategoryViewModel> categories = await _categoryService.GetAll();
+            SelectList selectLists = new SelectList(categories, "Id", "Name");
+            ViewBag.SelectList = selectLists;
+            return View(await _productServive.Edit(id));
         }
 
         // POST: Admin/Products/Edit/5
@@ -90,9 +73,7 @@ namespace SportShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProductViewModel model)
         {
-            List<CategoryViewModel> categories = await _categoryService.GetAll();
-            SelectList selectLists = new SelectList(categories, "Id", "Name");
-            ViewBag.SelectList = selectLists;
+            
             await _productServive.Update(model);
             return RedirectToAction("Index");    
         }
@@ -100,7 +81,7 @@ namespace SportShop.Areas.Admin.Controllers
         // GET: Admin/Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            return View(await _productServive.GetById(id));
+            return View(await _productServive.Edit(id));
         }
 
         // POST: Admin/Products/Delete/5

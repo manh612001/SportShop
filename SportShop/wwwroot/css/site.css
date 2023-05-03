@@ -17,9 +17,11 @@ body {
   margin-bottom: 60px;
 }
 #bg-login {
+    background-image: url(../AdminAssets/images/others/login-3.png);
+}
+#bg-signUp {
     background-image: url(../AdminAssets//images/others/login-3.png);
 }
-
 /*#banner img{
     width:100%;
     object-fit:cover;
@@ -31,6 +33,9 @@ body {
 .product-img{
     height:160px;
 }
-.section_gap{
-    padding-top:0;
+.cat_product_area{
+    padding: 20px 0 120px 0;
+}
+.itemCategory{
+    font-size:12px;
 }
