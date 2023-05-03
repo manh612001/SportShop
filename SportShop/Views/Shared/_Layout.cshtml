@@ -116,16 +116,18 @@
 
                                     <li class="nav-item">
                                         <a  class="icons">
-                                            <i class="ti-user" aria-hidden="true"> @User.Identity.Name</i>
+                                            <i class="ti-user" aria-hidden="true">@User.Identity.Name</i>
                                         </a>
                                         
                                     </li>
-
-                                    <li class="nav-item">
-                                        <a asp-controller="Account" asp-action="LogOut" asp-area="" class="icons">
-                                            Logout
-                                        </a>
-                                    </li>
+                                    @if (@User.Identity.Name!=null)
+                                    {
+                                        <li class="nav-item">
+                                            <a asp-controller="Account" asp-action="LogOut" asp-area="" class="icons">
+                                                Logout
+                                            </a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
