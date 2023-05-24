@@ -4,7 +4,7 @@ namespace SportShop.ViewModels.Cart
 {
     public class CartViewModel
     {
-        public List<CartItem> CartItems { get; set; }
+        public List<CartItems> CartItems { get; set; }
         public decimal GrandTotal { get; set; }
     }
 }

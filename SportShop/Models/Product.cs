@@ -23,5 +23,6 @@ namespace SportShop.Models
         public Category Category { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Bạn phải chọn danh mục")]
         public int categoryId { get; set; }
+        
     }
 }

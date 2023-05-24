@@ -23,9 +23,9 @@
     <div class="container">
         <div class="cart_inner">
             <div class="table-responsive">
-                <form method="post" asp-controller="Cart" asp-action="Buy">
-                    <input type="hidden" value="@ViewBag.UserId"/>
-                    <input type="hidden" value="@Model.CartItems"/>
+                <form asp-area="" asp-controller="Cart" asp-action="Checkout" method="POST">
+                    <input type="hidden" value="@Model"/>
+                    <input type ="hidden" value="@ViewBag.UserId"/>
                     @if (Model.CartItems.Count > 0)
                     {
                         <table class="table">
@@ -63,7 +63,10 @@
                                 <tr>
                                     <td class="text-right" colspan="6">
                                         <a class="btn btn-danger" asp-action="Clear">Xóa giỏ hàng</a>
-                                        <button type="submit" class="main_btn" href="#">Mua</button>
+                                        
+                                            <button type="submit" class="main_btn">Mua</button>
+                                        
+                                        
                                     </td>
                                 </tr>
                             </tbody>

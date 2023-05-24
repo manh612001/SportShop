@@ -3,7 +3,12 @@
     ViewData["Title"] = "Home Page";
     double discount = 0;
 }
-
+@if (TempData["alert"] != null)
+{
+    <div class="alert @TempData["status"]">
+        @TempData["alert"]
+    </div>
+}
 <!--================Home Banner Area =================-->
 <div id="demo" class="carousel slide mb-5" data-ride="carousel">
 

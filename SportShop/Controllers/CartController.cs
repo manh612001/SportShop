@@ -20,13 +20,66 @@ namespace SportShop.Controllers
             _categoryService = categoryService;
             _accountService = accountService;
         }
+        [HttpPost]
+        public async Task<IActionResult> Checkout(CartViewModel model)
+        {
+            List<CartItems> cart = HttpContext.Session.GetJson<List<CartItems>>("Cart") ?? new List<CartItems>();
+            
+            var userCurrentId = await _accountService.GetByName(User.Identity.Name);
+            try
+            {
+
+                var newCart = new Cart()
+                {
+                    grandTotal = cart.Sum(x => x.Quantity * x.Price),
+                };
+                _context.Carts.Add(newCart);
+                foreach(var item in cart) 
+                {
+                    _context.CartItems.Add(new CartItems()
+                    {
+                        ProductId = item.ProductId,
+                        ProductName = item.ProductName,
+                        UserId = userCurrentId.Id,
+                        Price = item.Price,
+                        Quantity = item.Quantity,
+                        Image = item.Image,
+                    });
+                }
+                await _context.SaveChangesAsync();
+                
+                var result = _context.CartItems.OrderByDescending(x => x.Id).Take(cart.Count());
+                foreach(var item in result)
+                {
+                    _context.Orders.Add(new Order()
+                    {
+                        CartId = newCart.Id,
+                        CartItemId = item.Id,
+                        
+                    });
+
+                }
+                await _context.SaveChangesAsync();
+                TempData["alert"] = "Đặt hàng thành công";
+                TempData["status"] = "alert-success";
+                return RedirectToAction("Index", "Home");
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            
+            return RedirectToAction("Index", "Home");
+
+        }
         public async Task<IActionResult> Index()
         {
             string name = User.Identity.Name;
             var userCurrentId = await _accountService.GetByName(name);
             ViewBag.UserId = userCurrentId.Id;
             ViewBag.categories = await _categoryService.GetAll();
-            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+            List<CartItems> cart = HttpContext.Session.GetJson<List<CartItems>>("Cart") ?? new List<CartItems>();
             CartViewModel cartVM = new()
             {
                 CartItems = cart,
@@ -37,11 +90,20 @@ namespace SportShop.Controllers
         public async Task<IActionResult> Add(int id)
         {
             Product product = await _context.Products.FindAsync(id);
-            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
-            CartItem cartItem = cart.Where(c => c.ProductId == id).FirstOrDefault();
+            List<CartItems> cart = HttpContext.Session.GetJson<List<CartItems>>("Cart") ?? new List<CartItems>();
+            CartItems cartItem = cart.Where(c => c.ProductId == id).FirstOrDefault();
+            var userCurrentId = await _accountService.GetByName(User.Identity.Name);
             if (cartItem == null)
             {
-                cart.Add(new CartItem(product));
+                cart.Add(new CartItems()
+                {
+                    ProductId = id,
+                    UserId= userCurrentId.Id,
+                    ProductName = product.Name,
+                    Price = product.Price,
+                    Quantity = 1,
+                    Image = product.Image,
+                });
             }
             else
             {
@@ -52,9 +114,9 @@ namespace SportShop.Controllers
         }
         public async Task<IActionResult> Decrease(long id)
         {
-            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart");
+            List<CartItems> cart = HttpContext.Session.GetJson<List<CartItems>>("Cart");
 
-            CartItem cartItem = cart.Where(c => c.ProductId == id).FirstOrDefault();
+            CartItems cartItem = cart.Where(c => c.ProductId == id).FirstOrDefault();
 
             if (cartItem.Quantity > 1)
             {
@@ -81,7 +143,7 @@ namespace SportShop.Controllers
 
         public async Task<IActionResult> Remove(long id)
         {
-            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart");
+            List<CartItems> cart = HttpContext.Session.GetJson<List<CartItems>>("Cart");
 
             cart.RemoveAll(p => p.ProductId == id);
 
@@ -105,11 +167,7 @@ namespace SportShop.Controllers
 
             return RedirectToAction("Index");
         }
-        [HttpPost]
-        public IActionResult Buy(CartItem cartItem)
-        {
-            return View(cartItem);
-        }
+        
         
 
 

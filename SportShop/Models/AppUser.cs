@@ -8,5 +8,6 @@ namespace SportShop.Models
         public string? Address { get; set; }
         public DateTime? Dob { get; set; }
         public string? Role { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }
