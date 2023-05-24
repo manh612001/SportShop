@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SportShop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize]
+    [Area("Admim")]
+    
     public class HomeController : Controller
     {
         public IActionResult Index()

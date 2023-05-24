@@ -14,7 +14,7 @@ using SportShop.ViewModels.Product;
 namespace SportShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly IProductService _productServive;

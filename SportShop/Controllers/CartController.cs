@@ -60,6 +60,7 @@ namespace SportShop.Controllers
 
                 }
                 await _context.SaveChangesAsync();
+                HttpContext.Session.Remove("Cart");
                 TempData["alert"] = "Đặt hàng thành công";
                 TempData["status"] = "alert-success";
                 return RedirectToAction("Index", "Home");
